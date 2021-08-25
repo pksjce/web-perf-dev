@@ -23,22 +23,24 @@ templateEngineOverride: md, njk
 </style>
 <header class="tdbc-hero">
   <div class="tdbc-container">
-    <!--span class="logo">
-    </span-->
-    <h1 class="tdbc-ink--secondary tdbc-mb-none">{{ meta.siteName }}</h1>
+    <span class="logo">
+      <img src='/img/webperfdev.svg' alt='webperfdev logo' height='125' />
+    </span>
+    <h1 class="tdbc-ink--secondary tdbc-mb-none tdbc-mt-md">{{ meta.siteName }}</h1>
     <h2 class="tdbc-lead tdbc-content-maxlength tdbc-ink--gray tdbc-mt-md tdbc-mx-auto">
       {{ meta.siteDescription }}
     </h2>
-    <div class="tdbc-mt-md tdbc-row tdbc-row--center-alignitems tdbc-row--center-content ">
-      <img src="https://avatars.githubusercontent.com/u/417268?v=4" width='50' height='50' alt="A woman with short hair and glasses smiling and shrugging" />
-      <div class="tdbc-lead tdbc-mb-none" >Taught by&nbsp;<a target="_blank" rel="noopener noreferrer" href="https://twitter.com/PKodmad">Pavithra Kodmad</a>(PK)</div>
+    <div class="tdbc-mt-md tdbc-row tdbc-row--center-alignitems tdbc-row--center-content ">      <div class="tdbc-lead tdbc-mb-none" >Taught by&nbsp;<a target="_blank" rel="noopener noreferrer" href="https://twitter.com/PKodmad">Pavithra Kodmad</a>(PK)</div>
     </div>
-    <div class='tdbc-content-width tdbc-mx-auto'>
-      <article class='tdbc-mt-xl tdbc-ml-none tdbc-text-align--left'>
-      <h3> Slow websites <a target="_blank" rel="noopener noreferrer" href="">stress our users</a> </h3>
+  </div>
+</header>
+<main class="tdbc-container">
+      <div class='tdbc-content-width tdbc-mx-auto'>
+      <article class='tdbc-mt-md tdbc-ml-none tdbc-text-align--left'>
+      <h3> Slow websites <a target="_blank" rel="noopener noreferrer" href="https://www.netimperative.com/2020/12/09/blood-pressure-study-which-website-issue-cause-users-the-most-stress/">stress our users</a> </h3>
       <p> There's a lot of <a target="_blank" rel="noopener noreferrer"  href="">research</a> out there which talk about how customers percieve speed as they interact with out websites.
       It has been proven that user satisfaction reduces, rage clicking increases and sales on the page decreases if the site performs poorly</p>
-      <h3>Performance <a target="_blank" rel="noopener noreferrer"  href="">is everyone's</a> job</h3>
+      <h3>Performance <a target="_blank" rel="noopener noreferrer"  href="https://youtu.be/aohGIPkFXbg">is everyone's</a> job</h3>
       <p> Good performance culture in front-end teams leads to a great user experience. It's now the responsibility of every developer to know how to identify and fix performance issues in thier code
       All of us should know the basics of measuring performance, using relevant tools and build hands-on knowledge of how to build fast websites</p>
       </article>
@@ -74,7 +76,7 @@ templateEngineOverride: md, njk
         </article>
       </div>
       <h2 class='tdbc-mt-md'>Sign up and I'll let you know when the next workshop is scheduled</h2>
-      <h3 class='tdbc-mt-sm'>Stay in the loop for blogposts and other performance related news and content!</h3>
+      <h3 class='tdbc-mt-sm'>You will also receive emails when I publish a new blogpost on my web perf newsletter "Fast and Feasible"!</h3>
       <div class="tdbc-mt-md tdbc-mx-auto tdbc-text-align--left">
         <form name="contact" data-netlify='true' action='success'>
           <div>
@@ -94,9 +96,6 @@ templateEngineOverride: md, njk
         </form>
       </div>
   </div>
-</header>
-<main class="tdbc-container">
-
 {{ content | safe }}
 
 </main>

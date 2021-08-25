@@ -1,5 +1,4 @@
 ---
-layout: base.njk
+layout: success.njk
 ---
 
-<div>Success!</div>
