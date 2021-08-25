@@ -1,39 +1,23 @@
-// for a full working demo of Netlify Identity + Functions, see https://netlify-gotrue-in-react.netlify.com/
+require("dotenv").config();
 
-const fetch = require('node-fetch')
+const fetch = require("node-fetch");
+const { BUTTONDOWN_API_KEY } = process.env;
 
-const handler = async function (event, context) {
-  if (!context.clientContext && !context.clientContext.identity) {
-    return {
-      statusCode: 500,
-      // Could be a custom message or object i.e. JSON.stringify(err)
-      body: JSON.stringify({
-        msg: 'No identity instance detected. Did you enable it?',
-      }),
-    }
-  }
-  const { identity, user } = context.clientContext
-  try {
-    const response = await fetch('https://api.chucknorris.io/jokes/random')
-    if (!response.ok) {
-      // NOT res.status >= 200 && res.status < 300
-      return { statusCode: response.status, body: response.statusText }
-    }
-    const data = await response.json()
+exports.handler = async (event) => {
+  const payload = JSON.parse(event.body).payload;
+  console.log(`Recieved a submission: ${payload.email}`);
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ identity, user, msg: data.value }),
-    }
-  } catch (error) {
-    // output to netlify function log
-    console.log(error)
-    return {
-      statusCode: 500,
-      // Could be a custom message or object i.e. JSON.stringify(err)
-      body: JSON.stringify({ msg: error.message }),
-    }
-  }
-}
-
-module.exports = { handler }
+  return fetch("https://api.buttondown.email/v1/subscribers", {
+    method: "POST",
+    headers: {
+      Authorization: `Token ${BUTTONDOWN_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: payload.email, notes: payload.name }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(`Submitted to Buttondown:\n ${data}`);
+    })
+    .catch((error) => ({ statusCode: 422, body: String(error) }));
+};
