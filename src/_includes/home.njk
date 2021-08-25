@@ -76,15 +76,20 @@ templateEngineOverride: md, njk
       <h2 class='tdbc-mt-md'>Sign up and I'll let you know when the next workshop is scheduled</h2>
       <h3 class='tdbc-mt-sm'>Stay in the loop for blogposts and other performance related news and content!</h3>
       <div class="tdbc-mt-md tdbc-mx-auto tdbc-text-align--left">
-        <form action="https://silly-ptolemy-fb1031.netlify.app/.netlify/functions/welcome-subscriber" method="post">
+        <form netlify name="contact" data-netlify-honeypot="bot-field" action="success">
           <div>
-            <label for="fields[first_name]" class="tdbc-lead">First Name</label>
-            <input type="text" placeholder="Preferred name" id="fields[first_name]" name="fields[first_name]" class="tdbc-text-box">
+            <label for="name" class="tdbc-lead">First Name</label>
+            <input type="text" placeholder="Preferred name" id="name" name="name" class="tdbc-text-box">
           </div>
           <div class='tdbc-mt-sm'>
-            <label for="email_address" class="tdbc-lead">Email<span>*</span></label>
-            <input type="email" placeholder="you@company.com" id="email_address" name="email_address" class="tdbc-text-box" required="">
+            <label for="email" class="tdbc-lead">Email<span>*</span></label>
+            <input type="email" placeholder="you@company.com" id="email" name="email" class="tdbc-text-box" required="">
           </div>
+          <input
+            class="hidden"
+            name="bot-field"
+            placeholder="Don't fill this out if you're a human"
+          />
           <div class="tdbc-text-align--center tdbc-mt-sm">
             <button type="submit" class="tdbc-button tdbc-button--secondary">
               <span >Sign Up</span>
