@@ -53,5 +53,8 @@
   },
   "browserslist": [
     "last 2 versions"
-  ]
+  ],
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
 }
