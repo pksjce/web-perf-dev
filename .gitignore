@@ -9,6 +9,7 @@ social
 # secrets and errors
 .env
 .log
+.vscode
 
 # macOS related files
 .DS_Store

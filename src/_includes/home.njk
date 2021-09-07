@@ -123,6 +123,19 @@ templateEngineOverride: md, njk
         </form>
       </div>
   </div>
+  <h3> Blogs shared in the newsletter </h3>
+  <div class="tdbc-section">
+    <ul class="tdbc-column-container">
+      {%- for blog in collections.blogs -%}
+      <li class="tdbc-card">
+        <div class="tdbc-card__content">
+          <a href="{{ blog.url }}" class="tdbc-card__title">{{ blog.data.title }}</a>
+          <p>{{ blog.data.description }}</p>
+        </div>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
 {{ content | safe }}
 
 </main>
