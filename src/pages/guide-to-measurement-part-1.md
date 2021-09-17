@@ -144,4 +144,4 @@ I hope you enjoyed Part 1 of this Guide to Measurements. Stay tuned for Part 2.
 
 _Footnote_ -
 
-- - We try to make our measurements in the cleanest and latest environment as possible. The incognito mode doesnt have chrome extensions which may be competing for resource and the chrome canary has all the latest features we can expect our users to be experiencing soon enough.
+- - We try to make our measurements in the cleanest and latest environment as possible. The incognito mode doesnt have chrome extensions which tend to compete for resources and Chrome browser's canary version has all the latest features we can expect our users to be experiencing in the near future.
