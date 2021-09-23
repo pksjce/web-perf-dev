@@ -11,14 +11,14 @@ Now, we come to the most important question of this blogpost. What is it that we
 
 As referenced in the previous blogpost, one of the reasons web performance is hard is because there is no single metric to tell us this information. It depends on the context, usage and tradeoff acceptable by the app.
 
-## Playground
+### Playground
 
 For the understanding of this blogpost, I created a small and slow website.
 Go here to have a look [https://alkaline-classy-microraptor.glitch.me/](https://alkaline-classy-microraptor.glitch.me/)
 
 This website is slow for various reasons. We can work on looking at all the relevant metrics which will help us benchmark any improvement we can make on the site. We will only be looking at the measurements and not working on any improvements in this blogpost.
 
-## At first we had domContentLoaded
+### At first we had domContentLoaded
 
 I realised some people may not know this, but the window object on your browser has a few useful performance related measurements in it.
 
@@ -42,7 +42,7 @@ Here's a visual I found in the spec for this object that explains the order of t
 
 In the above diagram, we see how pairs of the properties bookend major events in the loading of the web page. We normally use domContentLoadedEventEnd as an indication of how long the page took to load. Also its very easy to point out which events are uncharacteristically slow. For example if responseEnd was what was slowing everything down, then we'd look at CDNs for our html or reduce time in SSR and so on.
 
-## Shift to User Centric Metrics
+### Shift to User Centric Metrics
 
 In practical terms though, these numbers are not very relevant or clear for goal setting or even determining user experience. We needed more "user-centric" metrics.
 
@@ -58,25 +58,25 @@ I think these questions make a lot of sense about the first page load of the pag
 
 Here are some common metrics that web teams across the world measure to determine and maintain web performance.
 
-### TTFB (Time To First Byte)
+#### TTFB (Time To First Byte)
 
 This metric very closely answers the question "Is something happening on the page?"
 This is the time taken for the page to start receiving the first byte of the HTML.
 Things like indiscriminate redirects, http streaming, server time for creating the html are responsible for this metric.
 
-### FP(First paint) or TTR(Time To Render)
+#### FP(First paint) or TTR(Time To Render)
 
 This metric answers the question "Is what I'm seeing useful?"
 This is the first pass at painting the content onto the webpage by the browser. We may still be waiting for images and other assets but the structure and layout of the page is delivered at this point. This helps the user determine if they are in fact on the right page and that it will help them achieve their goal on that web app.
 This metric is affected by the time taken to load the html, javascript and css asset files. It also includes the time taken to parse and evaluate these files. Improving CDN usage and eliminating render blockers are necessary to improve this stage of page load.
 
-### LCP(Largest Contentful Paint)
+#### LCP(Largest Contentful Paint)
 
 I'm taking this metric to mean, has the most important thing on this page loaded? This may be text, form, image or even video. This marks the fact that the page is now ready to fulfil its purpose to the user.
 
 Stuff like font loading, images, SSR methods and the use of static pages can make this metric blazing fast.
 
-### TTI(Time To Interactive)
+#### TTI(Time To Interactive)
 
 I have to say, this metric is very close to what LCP represents. But, you will see it referred to in many places. It also has a subtle difference. This means that all of the Javascript is loaded and ready to execute. When TTI has not yet been reached, users tend to rage click. Some ways to mitigate this is to reduce the size of Javascript sent through the wire by lazy loading and deferring non critical code.
 
@@ -84,13 +84,13 @@ I have to say, this metric is very close to what LCP represents. But, you will s
 
 The above diagram is a handy way I try to remember the sequence of these metrics. There are many other metrics in this spectrum but knowing these basic ones will help you place the others on this scale. Remember that these metrics are cumulative. That means that making a fast TTFB affects all the others like a waterfall and reduces overall TTI too. But simply reducing TTI may not affect any other metric.
 
-## Lighthouse and web vitals.
+### Lighthouse and web vitals.
 
 Referring to my [previous blogpost](https://web-perf.dev/web-perf-intro/), on why performance is important, we spoke about how Google wants to calculate search rank based on performance metrics. These metrics are the Core Web Vitals. These are very similar to the ones I spoke of above. But they deserve their own section.
 
 Lighthouse is a tool developed by the Chrome team that initially was a chrome extension but now has been integrated right into the browser developer tools. To open Lighthouse, we must open up the Devtools and navigate to the tab indicating "Lighthouse". We will discuss this tool in depth in the future.
 
-Lighthouse loads up your webpage from scratch on your local browser and provides you with a performance score. This performance score is based off of a number of metrics called (web vitals)[https://web.dev/vitals/].
+Lighthouse loads up your webpage from scratch on your local browser and provides you with a performance score. This performance score is based off of a number of metrics called [web vitals](https://web.dev/vitals/).
 
 Three of these webvitals have been chosen as Core web vitals that every webpage must perform well in. These are LCP, FID and CLS. (Three new acronyms for you to learn!)
 
@@ -100,7 +100,7 @@ Three of these webvitals have been chosen as Core web vitals that every webpage 
 
 **CLS** - Cumulative Layout Shift. This is one of my favorite metrics and kudos to the team for coming up with it. This one refers to the jank in the pages as they load. As in, the whole page shifting when an image or an ad loads. This was something that we were unable to measure using the old navigation api. Again, we'll discuss this one in depth and how to make it green.
 
-## Custom Measurements
+### Custom Measurements
 
 The page load metrics may apply to the first load, what if your app was an SPA and you wanted to measure how long a transition takes? Web vitals may not be giving you the right signals. Users may still be complaining even though your Lighthouse score is 90. This is quite possible as the web moves forward rapidly and the metrics are barely keeping up. I saw an instance where a particular select box was loading slowly for a particular user but generally it worked fine. To get to the bottom of it, I had to create special metrics to measure the relevant component only.
 
